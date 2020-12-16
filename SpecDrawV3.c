@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #define N 9
 #define P 3 /*N number of points, P-1 dimension to draw*/
 
@@ -14,17 +14,17 @@ NEEDED: You need Couenne and AMPL.*/
 
 int main(void) {
 
-	int l, i, j, iter=0;
-	double u1[P-1][N], u2[P-1][N], u[P][N], mod, num, ini[N];
+   int l, i, j, iter=0;
+   double u1[P-1][N], u2[P-1][N], u[P][N], mod, num, ini[N];
    double tol = 1-1.e-17;
    double prod[2];
-	double D[N][N], w[N][N];
-	char ent[]="entrada.in", sor[]="sortida.out", cou[]="ortonormal.mod", csor[]="proau.out";
+   double D[N][N], w[N][N];
+   char ent[]="entrada.in", sor[]="sortida.out", cou[]="ortonormal.mod", csor[]="proau.out";
 
-	FILE *entrada, *sortida, *orton, *cout;
+   FILE *entrada, *sortida, *orton, *cout;
 
-	entrada = fopen(ent, "r");
-	sortida = fopen(sor, "w");
+   entrada = fopen(ent, "r");
+   sortida = fopen(sor, "w");
 
    for (j = 0; j < 2; j++) {
       for (i = 0; i < N; i++)
@@ -101,9 +101,9 @@ int main(void) {
       
       iter = iter + 1;
 
-   	for (i = 0; i < N; i++) {
+      for (i = 0; i < N; i++) {
          for (j = 0; j < (P-1); j++)
-				u1[j][i] = u2[j][i];
+	    u1[j][i] = u2[j][i];
       }
 
       /*D-orthonormalize*/
@@ -172,7 +172,7 @@ int main(void) {
 
    printf("Final amb %d iteracions\n",iter);
 
-	/*Write the final results*/
+   /*Write the final results*/
    for (i = 0; i < N; i++) {
       for (j = 1; j < P; j++)
          fprintf(sortida, "%le ", u[j][i]);
@@ -181,18 +181,18 @@ int main(void) {
 
    printf("prodFinal=(%le,%le)\n", prod[0], prod[1]);
 
-	return 0;
+   return 0;
 }
 
 /*Compute the modulus of vector v of lenght N
 INPUT: A vector of lenght N
 OUTPUT: Its modulus*/
 double modul( double v[N] ) {
-	double mod = 0;
-	int i;
+   double mod = 0;
+   int i;
 
-	for (i = 0; i < N; i++)
-		mod = mod + v[i]*v[i];
+   for (i = 0; i < N; i++)
+      mod = mod + v[i]*v[i];
 
-	return sqrt(mod);
+   return sqrt(mod);
 }
